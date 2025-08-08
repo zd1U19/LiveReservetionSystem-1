@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<head>
+		<meta charset="UTF-8">
+		<title>予約一覧</title>
+		<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+	</head>
+
+	<body>
+		<h1>予約一覧</h1>
+		<!-- 操作に応じたメッセージを表示:start -->
+		<div th:if="${statusMessage}" class="alert alert-success mt-4">
+			[[${statusMessage}]]
+		</div>
+		<!-- 操作に応じたメッセージを表示:end -->
+		<p>
+			<a class="mt-4 btn btn-primary" th:href="@{/admin/reserve/add}">新規ライブの追加</a>
+		</p>
+		<table class="table">
+			<tr>
+				<th>ID</th>
+				<th>氏名</th>
+				<th>メールアドレス</th>
+				<th>電話番号</th>
+				<th>ライブID</th>
+				<th>備考</th>
+				<th>予約送信日時</th>
+			</tr>
+			<tr th:each="reserve : ${reserves}">
+				<td th:text="${reserve.reserveId}"></td>
+				<td th:text="${reserve.name}"></td>
+				<td th:text="${reserve.email}"></td>	
+				<td th:text="${reserve.phone}"></td>
+				<td th:text="${reserve.liveId}"></td>
+				<td th:text="${reserve.note}"></td>
+				<td th:text="${#temporals.format(reserve.reservedAt,'yyyy年MM月dd日 HH:mm')}"></td>
+				<td><a class="btn btn-primary" th:href="@{/admin/reserve/edit/{id}(id=${reserve.reserveId})}">編集
+					</a></td>
+				<td><button class="btn btn-danger delete" th:data-href="@{/admin/reserve/delete/{id}(id=${reserve.reserveId})}"
+						th:data-name="${reserve.name}" data-bs-toggle="modal" data-bs-target="#confirm-modal">削除</button></td>
+			</tr>
+		</table>
+		</div>
+
+		<!-- 2 ページ以上の場合、ページネーションを表示:start -->
+		<div class="container">
+			<ul class="pagination">
+				<!-- 前のページへ -->
+				<li class="page-item disabled"><a class="page-link" href="">&laquo;</a></li>
+				<!-- ページ番号 -->
+				<li class="page-item active"><a class="page-link" href="">1</a></li>
+				<li class="page-item"><a class="page-link" href="">2</a></li>
+				<li class="page-item"><a class="page-link" href="">3</a></li>
+				<!-- 次のページへ -->
+				<li class="page-item"><a class="page-link" href="">&raquo;</a></li>
+			</ul>
+		</div>
+		<!-- 2 ページ以上の場合、ページネーションを表示:end -->
+		<!-- Bootstrap5 Modal -->
+		<div class="modal fade" id="confirm-modal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">ライブ情報の削除</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						「<span id="delete-name"></span>」を削除します。よろしいですか？
+					</div>
+					<div class="modal-footer">
+						<a class="btn btn-danger" id="delete-yes">はい</a>
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">いいえ</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+		<script>
+			document
+				.querySelectorAll(".delete")
+				.forEach(btn => btn.addEventListener("click", e => {
+					const name = e.target.getAttribute("data-name");
+					document
+						.getElementById("delete-name")
+						.textContent = name;
+					const href = e.target.getAttribute("data-href");
+					document
+						.getElementById("delete-yes")
+						.setAttribute("href", href);
+				}));
+		</script>
+
+	</body>
+
+	</html>

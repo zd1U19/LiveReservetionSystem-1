@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.app.mapper.LiveMapper">
+
+	<sql id="joinSelect">
+		SELECT
+		  lives.id, 
+		  lives.live_name, 
+		  lives.event_date,
+		  lives.capacity,
+		  lives.place, 
+		  lives.address, 
+		  lives.created_at
+		FROM lives
+	</sql>
+
+	<resultMap id="liveMap" type="Live">
+		<id column="id" property="liveId" />
+		<result column="live_name" property="liveName" />
+		<result column="event_date" property="eventDate" />
+		<result column="capacity" property="capacity" />
+		<result column="place" property="place" />
+		<result column="address" property="address" />
+		<result column="created_at" property="createdAt" />
+	</resultMap>
+
+	<select id="findAll" resultMap="liveMap">
+		<include refid="joinSelect" />
+	</select>
+
+	<select id="selectByLiveId" parameterType="int" resultMap="liveMap">
+		<include refid="joinSelect" />
+		WHERE lives.id = #{liveId}
+	</select>
+
+	<insert id="insert" parameterType="Live">
+		INSERT INTO lives(
+		  live_name,
+		  event_date,
+		  capacity,
+		  place,
+		  address,
+		  created_at
+		 )
+		VALUES(
+		  #{liveName},		  #{eventDate},
+		  #{capacity},
+		  #{place},
+		  #{address},
+		  NOW()
+		)
+	</insert>
+
+	<update id="update" parameterType="Live">
+		UPDATE lives
+		SET 
+		  live_name = #{liveName},
+		  event_date = #{eventDate},
+		  capacity = #{capacity},
+		  place =#{place},
+		  address = #{address}
+		WHERE id = #{liveId}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM lives WHERE id = #{liveId}
+	</delete>
+	
+	<select id="totalPages" parameterType="int" resultType="int">
+        SELECT CEIL(COUNT(*) / #{numPerPage}) FROM lives
+    </select>
+</mapper>
+ 
