@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>ライブのご紹介</title>
+</head>
+
+<body>
+
+	<h1>ライブのご紹介</h1>
+	<h2>新着ライブ</h2>
+	<table class="newlive">
+		<tr>
+			<th>ライブ名</th>
+			<th>開催日時</th>
+			<th>定員</th>
+			<th>会場</th>
+			<th>住所</th>
+		</tr>
+		<tr th:each="live : ${lives}">
+			<td th:text="${live.liveName}"></td>
+			<td th:text="${live.eventDate}"></td>
+			<td th:text="${live.capacity}"></td>
+			<td th:text="${live.place}"></td>
+			<td th:text="${live.address}"></td>
+		</tr>
+	</table>
+
+	<h2>ライブ一覧</h2>
+	<table class="newlive">
+		<tr>
+			<th>ライブ名</th>
+			<th>開催日時</th>
+			<th>定員</th>
+			<th>会場</th>
+			<th>住所</th>
+		</tr>
+		<tr th:each="live : ${lives}">
+			<td th:text="${live.liveName}"></td>
+			<td th:text="${live.eventDate}"></td>
+			<td th:text="${live.capacity}"></td>
+			<td th:text="${live.place}"></td>
+			<td th:text="${live.address}"></td>
+		</tr>
+	</table>
+</body>
+
+</html>
