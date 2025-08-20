@@ -41,17 +41,18 @@ public class LiveServiceImpl implements LiveService {
 	public void deleteLive(Integer id) {
 		liveMapper.delete(id);
 	}
-	
+
 	//以下理解しきってないので要確認
-	
+
 	@Override
-	public List<Live> getLiveListByPage(int page, int numPerPage){
-		int offset= (page - 1) * numPerPage;
-	    return liveMapper.selectLimited(offset, numPerPage);
+	public List<Live> getLiveListByPage(int page, int numPerPage) {
+		int offset = (page - 1) * numPerPage;
+		return liveMapper.selectLimited(offset, numPerPage);
 	}
-	
+
 	@Override
 	public int getTotalPages(int numPerPage) {
-	    return liveMapper.totalPages(numPerPage);
+		return liveMapper.totalPages(numPerPage);
 	}
+
 }

@@ -4,28 +4,13 @@
 <head>
 	<meta charset="UTF-8">
 	<title>ライブのご紹介</title>
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/css/member.css}">
 </head>
 
 <body>
-
+	<div class="text-center mt-4">
 	<h1>ライブのご紹介</h1>
-	<h2>新着ライブ</h2>
-	<table class="newlive">
-		<tr>
-			<th>ライブ名</th>
-			<th>開催日時</th>
-			<th>定員</th>
-			<th>会場</th>
-			<th>住所</th>
-		</tr>
-		<tr th:each="live : ${lives}">
-			<td th:text="${live.liveName}"></td>
-			<td th:text="${live.eventDate}"></td>
-			<td th:text="${live.capacity}"></td>
-			<td th:text="${live.place}"></td>
-			<td th:text="${live.address}"></td>
-		</tr>
-	</table>
 
 	<h2>ライブ一覧</h2>
 	<table class="newlive">
@@ -42,8 +27,11 @@
 			<td th:text="${live.capacity}"></td>
 			<td th:text="${live.place}"></td>
 			<td th:text="${live.address}"></td>
+			<td><a class="btn btn-primary" th:href="@{/member/reserve/{id}(id=${live.liveId})}">予約
+								</a></td>
 		</tr>
 	</table>
+	</div>
 </body>
 
 </html>

@@ -20,6 +20,7 @@ public interface LiveService {
 		List<Live> getLiveListByPage(int page, int numPerPage);
 
 		int getTotalPages(int numPerPage);
+		
 
 	}
 
