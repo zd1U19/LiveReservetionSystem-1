@@ -33,5 +33,7 @@ public class Reserve {
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private LocalDateTime reservedAt;
+	
+	private String liveName;
 
 }

@@ -11,6 +11,12 @@
 <body>
 	<div class="text-center mt-4">
 	<h1>ライブのご紹介</h1>
+	
+	<!-- 操作に応じたメッセージを表示:start -->
+			<div th:if="${statusMessage}" class="alert alert-success mt-4">
+				[[${statusMessage}]]
+			</div>
+			<!-- 操作に応じたメッセージを表示:end -->
 
 	<h2>ライブ一覧</h2>
 	<table class="newlive">

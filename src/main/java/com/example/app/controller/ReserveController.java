@@ -49,6 +49,7 @@ public class ReserveController {
 		if (errors.hasErrors()) {
 			model.addAttribute("title", "予約の追加");
 			model.addAttribute("reserve", new Reserve());
+		
 			return "admin/reserve/form";
 		}
 		service.addReserve(reserve);
@@ -61,7 +62,7 @@ public class ReserveController {
 		model.addAttribute("title", "予約の変更");
 		model.addAttribute("reserve", service.selectByReserveId(reserveId));
 		model.addAttribute("isNew", false);
-		model.addAttribute("liveList", liveService.getLiveList());
+		model.addAttribute("liveList", liveService.getLiveList());	
 		return "admin/reserve/form";
 	}
 
