@@ -14,7 +14,7 @@
 		<form th:action="${isNew} ? @{/admin/reserve/add} 
 		: @{/admin/reserve/edit/{id}(id=*{reserveId})}" method="post" th:object="${reserve}">
 			<div th:unless="${isNew}">
-			  <p class="mt-2">ID：<input type="hidden" th:field="*{reserveId}"/></p>
+				<p class="mt-2">ID：<input type="hidden" th:field="*{reserveId}" /></p>
 			</div>
 			<span th:errors="*{name}" class="error"></span>
 			<p class="mt-2">氏名：<input type="text" th:field="*{name}"></p>
@@ -22,20 +22,25 @@
 			<p class="mt-2">メールアドレス：<input type="text" th:field="*{email}"></p>
 			<span th:errors="*{phone}" class="error"></span>
 			<p class="mt-2">電話番号：<input type="text" th:field="*{phone}"></p>
-			<span th:errors="*{liveId}" class="error"></span>			
-			<p class="mt-2">ライブID：
-				<input type="text" th:field="*{liveId}" th:if="${isNew}">
-			    <input type="text" th:field="*{liveId}" th:unless="${isNew}"readonly></p>
+			<span th:errors="*{liveId}" class="error"></span>
+			<p class="mt-2">ライブ：
+				<select th:field="*{liveId}" th:if="${isNew}">
+					<option th:each="live : ${liveList}" th:value="${live.liveId}"
+						th:text="${live.liveId} + ' ' +${live.liveName}">
+						ライブID名前</option>
+				</select>
+				<input type="text" th:field="*{liveName}" th:unless="${isNew}" readonly>
 			</p>
 			<span th:errors="*{note}" class="error"></span>
 			<p class="mt-2">備考：<input type="text" th:field="*{note}"></p>
 			<span th:errors="*{reservedAt}" class="error"></span>
 			<div th:unless="${isNew}">
-			<p class="mt-2">投稿日時：<input type="datetime-local" th:field="*{reservedAt}" readonly></p>
+				<p class="mt-2">投稿日時：<input type="datetime-local" th:field="*{reservedAt}" readonly></p>
 			</div>
 			<input class="btn btn-primary" type="submit">
 		</form>
 		<p class="mt-4"><a th:href="@{/admin/reserve/list}">一覧に戻る</a></p>
 	</div>
 </body>
+
 </html>
