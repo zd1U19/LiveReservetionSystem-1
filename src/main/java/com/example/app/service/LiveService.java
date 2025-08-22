@@ -21,7 +21,6 @@ public interface LiveService {
 
 		int getTotalPages(int numPerPage);
 		
-
 	}
 
 

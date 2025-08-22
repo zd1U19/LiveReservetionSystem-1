@@ -13,7 +13,7 @@
 		<h1 class="my-4">[[${title}]]</h1>
 		<form th:action="${isNew} ? @{/admin/reserve/add} 
 		: @{/admin/reserve/edit/{id}(id=*{reserveId})}" method="post" th:object="${reserve}">
-			<div th:if="${!isNew}">
+			<div th:unless="${!isNew}">
 				<p class="mt-2">予約ID：<span th:text="*{reserveId}"></span></p>
 			</div>
 			<span th:errors="*{name}" class="error"></span>

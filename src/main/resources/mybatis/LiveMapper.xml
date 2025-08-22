@@ -5,13 +5,13 @@
 
 	<sql id="joinSelect">
 		SELECT
-		  lives.id, 
-		  lives.live_name, 
-		  lives.event_date,
-		  lives.capacity,
-		  lives.place, 
-		  lives.address, 
-		  lives.created_at
+		lives.id,
+		lives.live_name,
+		lives.event_date,
+		lives.capacity,
+		lives.place,
+		lives.address,
+		lives.created_at
 		FROM lives
 	</sql>
 
@@ -29,46 +29,57 @@
 		<include refid="joinSelect" />
 	</select>
 
-	<select id="selectByLiveId" parameterType="int" resultMap="liveMap">
+	<select id="selectByLiveId" parameterType="int"
+		resultMap="liveMap">
 		<include refid="joinSelect" />
 		WHERE lives.id = #{liveId}
 	</select>
 
 	<insert id="insert" parameterType="Live">
 		INSERT INTO lives(
-		  live_name,
-		  event_date,
-		  capacity,
-		  place,
-		  address,
-		  created_at
-		 )
+		live_name,
+		event_date,
+		capacity,
+		place,
+		address,
+		created_at
+		)
 		VALUES(
-		  #{liveName},		  #{eventDate},
-		  #{capacity},
-		  #{place},
-		  #{address},
-		  NOW()
+		#{liveName}, #{eventDate},
+		#{capacity},
+		#{place},
+		#{address},
+		NOW()
 		)
 	</insert>
 
 	<update id="update" parameterType="Live">
 		UPDATE lives
-		SET 
-		  live_name = #{liveName},
-		  event_date = #{eventDate},
-		  capacity = #{capacity},
-		  place =#{place},
-		  address = #{address}
+		SET
+		live_name = #{liveName},
+		event_date = #{eventDate},
+		capacity = #{capacity},
+		place =#{place},
+		address = #{address}
 		WHERE id = #{liveId}
 	</update>
 
 	<delete id="delete" parameterType="int">
-		DELETE FROM lives WHERE id = #{liveId}
+		DELETE FROM lives WHERE id =
+		#{liveId}
 	</delete>
-	
+
 	<select id="totalPages" parameterType="int" resultType="int">
-        SELECT CEIL(COUNT(*) / #{numPerPage}) FROM lives
-    </select>
+		SELECT CEIL(COUNT(*) / #{numPerPage}) FROM lives
+	</select>
+	
+	<select id="selectLimited" resultMap="liveMap">
+		<include refid="joinSelect"></include>
+		LIMIT #{offset},#{limit}
+	</select>
+
+	<select id="count" resultType="long">
+		SELECT COUNT(*) FROM lives
+	</select>
 </mapper>
  

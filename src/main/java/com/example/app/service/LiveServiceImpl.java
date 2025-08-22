@@ -52,7 +52,8 @@ public class LiveServiceImpl implements LiveService {
 
 	@Override
 	public int getTotalPages(int numPerPage) {
-		return liveMapper.totalPages(numPerPage);
+		double totalNum=(double) liveMapper.count();
+		return (int)Math.ceil(totalNum/numPerPage);
 	}
 
 }
