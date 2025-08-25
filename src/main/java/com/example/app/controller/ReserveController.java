@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.app.domain.Reserve;
@@ -22,14 +23,23 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ReserveController {
 	
+	private final int NUM_PER_PAGE=5;
 	private final ReserveService service;
 	private final LiveService liveService;
 	
+
 	@GetMapping("/list")
-	public String list(Model model) {
-		model.addAttribute("reserves",service.getReserveList());
-			return "admin/reserve/list";
+	public String list(
+			@RequestParam(name="page",defaultValue="1")Integer page,
+			Model model) {
+		model.addAttribute("reserves",
+				service.getReserveListByPage(page, NUM_PER_PAGE));
+				 model.addAttribute("page", page);
+				 model.addAttribute("totalPages",
+				service.getTotalPages(NUM_PER_PAGE));
+		return "admin/reserve/list";
 	}
+
 	
 	@GetMapping("/add")
 	public String addget(Model model) {
@@ -48,6 +58,7 @@ public class ReserveController {
 			Model model) {
 		if (errors.hasErrors()) {
 			model.addAttribute("title", "予約の追加");
+			model.addAttribute("isNew",true);
 			model.addAttribute("reserve", new Reserve());
 		
 			return "admin/reserve/form";

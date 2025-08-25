@@ -10,14 +10,16 @@
 
 <body>
 	<div class="text-center mt-4">
+		<div class="select-home">
 		<h1>ライブ予約管理システム</h1>
 
+		
 		<th:block th:if="${session.loginId}">
 			<a class="btn btn-primary btn-lg mt-4 mr-2" th:href="@{/admin/live/list}">ライブ一覧</a>
 			<a class="btn btn-primary btn-lg mt-4 ml-2" th:href="@{/admin/reserve/list}">予約一覧</a>
 			<a class="btn btn-secondary btn-lg mt-4 ml-2" th:href="@{/logout}">ログアウト</a>
 		</th:block>
-
+		</div>
 
 		<th:block th:unless="${session.loginId}">
 			<form class="mt-4" action="" method="post" th:object="${admin}">

@@ -11,20 +11,40 @@
 <body>
 	<div class="container">
 		<h1 class="my-4">[[${title}]]</h1>
-		<form th:action="@{${formaction}}" method="post" th:object="${live}">
-		    <div th:if="${!isNew}">
-				<p class="mt-2">ライブID：<span th:text="*{liveId}"></span></p>
-			</div>
+		<!--新規登録-->
+		<form th:if="${isNew}" th:action="@{/admin/live/add}" method="post" th:object="${live}">
+			<span th:errors="*{liveId}" class="error"></span>
+			  <p class="mt-2">ライブID：(登録時自動反映)<input type="hidden" th:field="*{liveId}"></p>
 			<span th:errors="*{liveName}" class="error"></span>
-			<p class="mt-2">名称：<input type="text" th:field="*{liveName}"></p>
+			  <p class="mt-2">名称：<input type="text" th:field="*{liveName}"></p>
 			<span th:errors="*{eventDate}" class="error"></span>
-			<p class="mt-2">開催日時：<input type="datetime-local" th:field="*{eventDate}"></p>
+			  <p class="mt-2">開催日時：<input type="datetime-local" th:field="*{eventDate}"></p>
 			<span th:errors="*{capacity}" class="error"></span>
-			<p class="mt-2">定員：<input type="text" th:field="*{capacity}"></p>
+			  <p class="mt-2">定員：<input type="text" th:field="*{capacity}"></p>
+			<span th:errors="*{place}" class="error"></span>
+			  <p class="mt-2">会場：<input type="text" th:field="*{place}"></p>
 			<span th:errors="*{address}" class="error"></span>
-			<p class="mt-2">住所：<input type="text" th:field="*{address}"></p>
+			  <p class="mt-2">住所：<input type="text" th:field="*{address}"></p>
 			<span th:errors="*{createdAt}" class="error"></span>
-			<p class="mt-2">投稿日時：<input type="datetime-local" th:field="*{createdAt}"></p>
+			  <p class="mt-2">投稿日時：<input type="datetime-local" th:field="*{createdAt}"></p>
+			<input class="btn btn-primary" type="submit">
+		</form>
+		<!--編集-->
+		<form th:unless="${isNew}" th:action="@{/admin/live/edit/{id}(id=*{liveId})}" method="post" th:object="${live}">
+			<span th:errors="*{liveId}" class="error"></span>
+			  <p class="mt-2">ライブID：<input type="text" th:field="*{liveId}" readonly></p>
+			<span th:errors="*{liveName}" class="error"></span>
+			  <p class="mt-2">名称：<input type="text" th:field="*{liveName}"></p>
+			<span th:errors="*{eventDate}" class="error"></span>
+			  <p class="mt-2">開催日時：<input type="datetime-local" th:field="*{eventDate}"></p>
+			<span th:errors="*{capacity}" class="error"></span>
+			  <p class="mt-2">定員：<input type="text" th:field="*{capacity}"></p>
+			<span th:errors="*{place}" class="error"></span>
+			  <p class="mt-2">会場：<input type="text" th:field="*{place}"></p>
+			<span th:errors="*{address}" class="error"></span>
+			  <p class="mt-2">住所：<input type="text" th:field="*{address}"></p>
+			<span th:errors="*{createdAt}" class="error"></span>
+			  <p class="mt-2">投稿日時：<input type="datetime-local" th:field="*{createdAt}"></p>
 			<input class="btn btn-primary" type="submit">
 		</form>
 		<p class="mt-4"><a th:href="@{/admin/live/list}">一覧に戻る</a></p>

@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Range;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
 
@@ -20,6 +21,7 @@ public class Live {
 	private String liveName;
 
 	@NotNull
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private LocalDateTime eventDate;
 
 	@NotNull
@@ -33,6 +35,7 @@ public class Live {
 	@Size(max = 255)
 	private String address;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private LocalDateTime createdAt;
 
 }

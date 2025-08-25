@@ -16,14 +16,20 @@
 		</div>
 		<form th:action="@{/member/reserve/{liveId}(liveId=${reserve.liveId})}" } method="post" th:object="${reserve}">
 			<span th:errors="*{liveId}" class="error"></span>
-			<p class="mt-2">ライブID(自動入力)<input type="text" th:field="*{liveId}" readonly></p>
+			<p class="mt-2">ライブID<input type="text" th:field="*{liveId}" readonly></p>
+			
+			<p></p>
+			<p>以下の項目をご入力ください</p>
+			<p>例）山田太郎【姓名間は詰めて入力ください】※必須項目</p>
 			<span th:errors="*{name}" class="error"></span>
 			<p class="mt-2">氏名：<input type="text" th:field="*{name}"></p>
+			<p>例）○○○○@mail.com※必須項目</p>
 			<span th:errors="*{email}" class="error"></span>
 			<p class="mt-2">メールアドレス：<input type="text" th:field="*{email}"></p>
+			<p>例）090-□□□□-△△△△※必須項目</p>
 			<span th:errors="*{phone}" class="error"></span>
 			<p class="mt-2">電話番号：<input type="text" th:field="*{phone}"></p>
-
+			<p>例）複数人で予約など、なにかございましたらこちらにご記載ください</p>
 			<span th:errors="*{note}" class="error"></span>
 			<p class="mt-2">備考：<input type="text" th:field="*{note}"></p>
 			<span th:errors="*{reservedAt}" class="error"></span>

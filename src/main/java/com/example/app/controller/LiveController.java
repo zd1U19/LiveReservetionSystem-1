@@ -41,8 +41,7 @@ public class LiveController {
 	@GetMapping("/add")
 	public String addGet(Model model) {
 		model.addAttribute("title", "ライブの追加");
-		model.addAttribute("live", new Live());
-		model.addAttribute("formAction", "/admin/live/add"); 
+		model.addAttribute("live", new Live()); 
 		model.addAttribute("isNew", true);
 		return "admin/live/form";
 	}
@@ -55,7 +54,6 @@ public class LiveController {
 			Model model) {
 		if (errors.hasErrors()) {
 			model.addAttribute("title", "ライブの追加");
-			model.addAttribute("formAction", "/admin/live/add");
 			model.addAttribute("isNew", true);
 			return "admin/live/form";
 		}
@@ -68,7 +66,6 @@ public class LiveController {
 	public String editGet(@PathVariable("liveId") Integer liveId, Model model) {
 		model.addAttribute("title", "ライブ情報の変更");
 		model.addAttribute("live", service.getLiveById(liveId));
-		model.addAttribute("formAction", "/admin/live/edit/"+liveId);
 		model.addAttribute("isNew", false);
 		return "admin/live/form";
 	}
@@ -82,7 +79,6 @@ public class LiveController {
 			Model model) {
 		if (errors.hasErrors()) {
 			model.addAttribute("title", "ライブ情報の変更");
-			model.addAttribute("formAction", "/admin/live/edit/"+liveId);
 			model.addAttribute("isNew", false);
 			return "admin/live/form";
 		}
@@ -98,7 +94,4 @@ public class LiveController {
 		rd.addFlashAttribute("statusMessage", "ライブ情報を削除しました。");
 		return "redirect:/admin/live/list";
 	}
-	
-	//
-
 }

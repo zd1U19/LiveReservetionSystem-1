@@ -5,13 +5,13 @@
 
 	<sql id="joinSelect">
 		SELECT
-		  reserves.id, 
-		  reserves.name, 
-		  reserves.email,
-		  reserves.phone,
-		  reserves.live_id, 
-		  reserves.note, 
-		  reserves.reserved_at
+		reserves.id,
+		reserves.name,
+		reserves.email,
+		reserves.phone,
+		reserves.live_id,
+		reserves.note,
+		reserves.reserved_at
 		FROM reserves
 	</sql>
 
@@ -29,47 +29,58 @@
 		<include refid="joinSelect" />
 	</select>
 
-	<select id="selectByReserveId" parameterType="int" resultMap="reserveMap">
+	<select id="selectByReserveId" parameterType="int"
+		resultMap="reserveMap">
 		<include refid="joinSelect" />
 		WHERE reserves.id = #{reserveId}
 	</select>
 
+	<select id="selectLimited" resultMap="reserveMap">
+		<include refid="joinSelect"></include>
+		LIMIT #{offset}, #{limit}
+	</select>
+	
+	<select id="count" resultType="long">
+		SELECT COUNT(*) FROM reserves
+	</select>
+
 	<insert id="insert" parameterType="Reserve">
 		INSERT INTO reserves(
-		  name,
-		  email,
-		  phone,
-		  live_id,
-		  note,
-		  reserved_at
-		 )
+		name,
+		email,
+		phone,
+		live_id,
+		note,
+		reserved_at
+		)
 		VALUES(
-		  #{name},
-		  #{email},
-		  #{phone},
-		  #{liveId},
-		  #{note},
-		  NOW()
+		#{name},
+		#{email},
+		#{phone},
+		#{liveId},
+		#{note},
+		NOW()
 		)
 	</insert>
 
 	<update id="update" parameterType="Reserve">
 		UPDATE reserves
-		SET 
-		  name = #{name},
-		  email = #{email},
-		  phone = #{phone},
-		  live_id =#{liveId},
-		  note = #{note}
+		SET
+		name = #{name},
+		email = #{email},
+		phone = #{phone},
+		live_id =#{liveId},
+		note = #{note}
 		WHERE id = #{reserveId}
 	</update>
 
 	<delete id="delete" parameterType="int">
-		DELETE FROM reserves WHERE id = #{reserveId}
+		DELETE FROM reserves WHERE id
+		= #{reserveId}
 	</delete>
-	
+
 	<select id="totalPages" parameterType="int" resultType="int">
-        SELECT CEIL(COUNT(*) / #{numPerPage}) FROM reserves
-    </select>
+		SELECT CEIL(COUNT(*) / #{numPerPage}) FROM reserves
+	</select>
 </mapper>
  
