@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+
+.header {
+	height: 400px;
+	/* ヘッダーの高さ */
+	background-image: url('/images/hedder.jpg');
+	/* static/images にある画像を指定 */
+	background-size: contain;
+	/* 全体に拡大 */
+	background-position: center;
+	/* 中央に配置 */
+	background-repeat: no-repeat;
+	/* 繰り返さない */
+	background-color: black;
+}
+
+body {
+	background-color: black;
+	font-family: 'メイリオ';
+	font-size: 15px;
+}
+
+main {
+	width: 1200px;
+	margin: 0 auto;
+	background-color: lightgray;
+	text-align: center;
+}
+
+.tabletitle{
+white-space: nowrap;
+}
+
+th,td {
+	padding: 20px 10px;
+	
+}
+
+table {
+	width: 800px;
+	margin: 0 auto;
+
+}
+
+.btnsize {
+	display: inline-block;
+	/* ボタンをテーブルセル内で独立させる */
+	white-space: nowrap;
+}
+
+.btnsize .btn.btn-primary{
+  background-color: white !important; 
+  color: rebeccapurple !important; 
+  border-color: white !important;
+}

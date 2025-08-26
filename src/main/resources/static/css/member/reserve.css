@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+body {
+	background-color: black;
+	font-family: 'メイリオ';
+	font-size: 15px;
+}
+
+.container {
+	width: 700px;
+	margin: 0 auto;
+	background-color: lightgray;
+	padding: 20px 20px;
+	text-align: center;
+	font-size: larger;
+}
+
+.form {
+	width: 600px;
+	margin: 0 auto;
+	background-color: white;
+	text-align: left;
+	padding: 20px 20px;
+	font-size: smaller;
+}

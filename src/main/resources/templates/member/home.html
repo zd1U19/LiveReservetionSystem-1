@@ -5,24 +5,26 @@
 	<meta charset="UTF-8">
 	<title>ライブのご紹介</title>
 	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-	<link rel="stylesheet" th:href="@{/css/member.css}">
+	<link rel="stylesheet" th:href="@{/css/member/style.css}">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200..900&display=swap" rel="stylesheet">
 </head>
 
 <body>
-	<div class="text-center mt-4">
-	<h1>ライブのご紹介</h1>
+	<div class="header"></div>
 	
+	<main>
 	<!-- 操作に応じたメッセージを表示:start -->
 			<div th:if="${statusMessage}" class="alert alert-success mt-4">
 				[[${statusMessage}]]
 			</div>
 			<!-- 操作に応じたメッセージを表示:end -->
-
-	<h2>ライブ一覧</h2>
+	<div class="livetable">
 	<table class="newlive">
-		<tr>
-			<th>ライブ名</th>
-			<th>開催日時</th>
+		<tr class="tabletitle">
+			<th>ライブ</th>
+			<th>開催</th>
 			<th>定員</th>
 			<th>会場</th>
 			<th>住所</th>
@@ -33,11 +35,17 @@
 			<td th:text="${live.capacity}"></td>
 			<td th:text="${live.place}"></td>
 			<td th:text="${live.address}"></td>
-			<td><a class="btn btn-primary" th:href="@{/member/reserve/{id}(id=${live.liveId})}">予約
-								</a></td>
+			<td>
+				<span class="btnsize">
+					<a class="btn btn-primary btn-sm" th:href="@{/member/reserve/{id}(id=${live.liveId})}">予約はこちら
+					</a>
+				</span>
+			</td>
 		</tr>
 	</table>
 	</div>
+	</div>
+	</main>
 </body>
 
 </html>
