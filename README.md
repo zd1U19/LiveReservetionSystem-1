@@ -17,13 +17,6 @@
 ・入力バリデーション・エラーメッセージ表示対応<br>
 
 <h2>動作デモ動画</h2>
-<iframe 
-    width="560" 
-    height="315" 
-    src="https://www.youtube.com/embed/2SxgFwvMGRs" 
-    frameborder="0" 
-    allowfullscreen>
-</iframe>
 YouTube
 https://youtu.be/2SxgFwvMGRs
 
