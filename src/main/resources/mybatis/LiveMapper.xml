@@ -13,6 +13,7 @@
 		lives.address,
 		lives.created_at
 		FROM lives
+		
 	</sql>
 
 	<resultMap id="liveMap" type="Live">
@@ -27,12 +28,14 @@
 
 	<select id="findAll" resultMap="liveMap">
 		<include refid="joinSelect" />
+		ORDER BY lives.event_date ASC
 	</select>
 
 	<select id="selectByLiveId" parameterType="int"
 		resultMap="liveMap">
 		<include refid="joinSelect" />
 		WHERE lives.id = #{liveId}
+		ORDER BY lives.event_date ASC
 	</select>
 
 	<insert id="insert" parameterType="Live">

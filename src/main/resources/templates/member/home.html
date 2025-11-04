@@ -31,7 +31,7 @@
 		</tr>
 		<tr th:each="live : ${lives}">
 			<td th:text="${live.liveName}"></td>
-			<td th:text="${#temporals.format(live.createdAt,'yyyy/MM/dd HH:mm')}"></td>
+			<td th:text="${#temporals.format(live.eventDate,'yyyy/MM/dd HH:mm')}"></td>
 			<td th:text="${live.capacity}"></td>
 			<td th:text="${live.place}"></td>
 			<td th:text="${live.address}"></td>
