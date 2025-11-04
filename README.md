@@ -17,7 +17,12 @@
 ・入力バリデーション・エラーメッセージ表示対応<br>
 
 <h2>動作デモ動画</h2>
-https://www.youtube.com/watch?v=Qm2XOEQp1XQ
+<video src="【https://github.com/zd1U19/LiveReservetionSystem-1/raw/refs/heads/master/demovideos/LiveReservetionSysrtem.mp4】" controls style="max-width: 100%;">
+  動画を再生できません
+</video>
+
+YouTube
+https://youtu.be/2SxgFwvMGRs
 
 
 <h2>使用技術</h2>
