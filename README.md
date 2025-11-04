@@ -17,7 +17,8 @@
 ・入力バリデーション・エラーメッセージ表示対応<br>
 
 <h2>動作デモ動画</h2>
-[![デモ動画を再生](https://img.youtube.com/vi/Qm2XOEQp1XQ/maxresdefault.jpg)](https://www.youtube.com/watch?v=Qm2XOEQp1XQ)
+https://www.youtube.com/watch?v=Qm2XOEQp1XQ
+
 
 <h2>使用技術</h2>
 言語 | Java / HTML / CSS / JavaScript |<br>
