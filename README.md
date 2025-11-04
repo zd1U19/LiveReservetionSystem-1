@@ -17,10 +17,7 @@
 ・入力バリデーション・エラーメッセージ表示対応<br>
 
 <h2>動作デモ動画</h2>
-<video src="ライブ予約システム仕様録画.mp4" controls width="100%" muted loop autoplay>
-    このブラウザでは動画が再生できません。
-</video>demovideos/ライブ予約システム仕様録画.mp4
-
+[![デモ動画を再生](https://img.youtube.com/vi/Qm2XOEQp1XQ/maxresdefault.jpg)](https://www.youtube.com/watch?v=Qm2XOEQp1XQ)
 
 <h2>使用技術</h2>
 言語 | Java / HTML / CSS / JavaScript |<br>
