@@ -27,6 +27,7 @@
 
 	<select id="findAll" resultMap="liveMap">
 		<include refid="joinSelect" />
+		ORDER BY event_date ASC
 	</select>
 
 	<select id="selectByLiveId" parameterType="int"
@@ -75,6 +76,7 @@
 	
 	<select id="selectLimited" resultMap="liveMap">
 		<include refid="joinSelect"></include>
+		ORDER BY event_date ASC
 		LIMIT #{offset},#{limit}
 	</select>
 
