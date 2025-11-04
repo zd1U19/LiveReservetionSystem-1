@@ -4,7 +4,7 @@
 .header {
 	height: 400px;
 	/* ヘッダーの高さ */
-	background-image: url('/images/hedder.jpg');
+	background-image: url('/images/Welcome to LIVE.jpg');
 	/* static/images にある画像を指定 */
 	background-size: contain;
 	/* 全体に拡大 */
@@ -51,6 +51,6 @@ table {
 
 .btnsize .btn.btn-primary{
   background-color: white !important; 
-  color: rebeccapurple !important; 
+  color: blue !important; 
   border-color: white !important;
 }
